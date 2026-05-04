@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proxfier</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Titlebar -->
+        <div class="titlebar">
+            <div class="drag-region"></div>
+            <div class="controls">
+                <button id="minimize-btn" class="control-btn">—</button>
+                <button id="close-btn" class="control-btn">×</button>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <main class="main-screen" id="main-screen">
+            <header>
+                <div class="logo">PROXFIER</div>
+                <p class="subtitle">System-wide Proxy Service</p>
+            </header>
+
+            <div class="status-panel">
+                <div class="status-indicator" id="status-indicator"></div>
+                <span id="status-text">Disconnected</span>
+            </div>
+
+            <div class="power-container">
+                <button class="power-btn" id="connect-btn">
+                    <div class="power-icon"></div>
+                </button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-header">
+                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 5v14M19 12l-7 7-7-7"/>
+                        </svg>
+                        <span class="stat-label">Download</span>
+                    </div>
+                    <span class="stat-value" id="download-speed">0.00 KB/s</span>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-header">
+                        <svg class="stat-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 19V5M5 12l7-7 7 7"/>
+                        </svg>
+                        <span class="stat-label">Upload</span>
+                    </div>
+                    <span class="stat-value" id="upload-speed">0.00 KB/s</span>
+                </div>
+            </div>
+
+            <button class="settings-trigger" id="open-settings">
+                Settings
+            </button>
+        </main>
+
+        <!-- Settings Modal (Hidden by default) -->
+        <div class="modal-overlay" id="settings-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Proxy Settings</h2>
+                    <button class="close-modal" id="close-settings">×</button>
+                </div>
+                <div class="form-group">
+                    <label>Proxy Host</label>
+                    <input type="text" id="proxy-host" placeholder="127.0.0.1">
+                    <span class="error-msg" id="error-host"></span>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Port</label>
+                        <input type="number" id="proxy-port" placeholder="1080">
+                        <span class="error-msg" id="error-port"></span>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="proxy-type">
+                            <option value="socks5">SOCKS5</option>
+                            <option value="http">HTTP</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Username (Optional)</label>
+                    <input type="text" id="proxy-user" placeholder="user">
+                </div>
+                <div class="form-group">
+                    <label>Password (Optional)</label>
+                    <input type="password" id="proxy-pass" placeholder="password">
+                </div>
+                <button class="save-btn" id="save-settings">Save & Apply</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="renderer.js"></script>
+</body>
+</html>
